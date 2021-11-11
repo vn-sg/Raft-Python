@@ -158,13 +158,13 @@ class node:
             msg = sys.stdin.readline().split()
             if len(msg) > 2:
                 if msg[2] == message.AE:
-                    self.AE_handler(senderID=int(msg[1]), term=int(msg[3]), index=int(msg[4]))
+                    self.AE_handler(senderID=int(msg[1]), term=int(msg[3]), index=int(msg[4]) if msg[4].isdigit() else int(''.join(e for e in msg[4] if e.isdigit())))
                 elif msg[2] == message.AER:
                     self.AER_handler(senderID=int(msg[1]), term=int(msg[3]), is_accepted=msg[4])
                 elif msg[2] == message.RV:
-                    self.RV_handler(senderID=int(msg[1]), term=int(msg[3]))
+                    self.RV_handler(senderID=int(msg[1]), term=int(msg[3]) if msg[3].isdigit() else int(''.join(e for e in msg[3] if e.isdigit())))
                 elif msg[2] == message.RVR:
-                    self.RVR_handler(senderID=int(msg[1]), term=int(msg[3]), is_accepted=msg[4])
+                    self.RVR_handler(senderID=int(msg[1]), term=int(msg[3]), is_accepted=msg[4] )
                 else:
                     print("WRONG INPUT!!")
 
